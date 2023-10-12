@@ -17,18 +17,18 @@ export class AuthorController {
   constructor(private readonly authorService: AuthorService) {}
 
   @Post()
-  create(@Body() createAuthorDto: CreateAuthorDto) {
-    return this.authorService.createAuthor(createAuthorDto);
+  create(@Body() author: CreateAuthorDto) {
+    return this.authorService.create(author);
   }
 
   @Get()
   findAll() {
-    return this.authorService.getAllAuthor();
+    return this.authorService.getAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.authorService.getAuthorById(+id);
+    return this.authorService.getById(+id);
   }
 
   @Patch(':id')
@@ -36,7 +36,7 @@ export class AuthorController {
     @Param('id') id: string,
     @Body() updateAuthorDto: UpdateAuthorDto,
   ) {
-    return this.authorService.updateAuthor(+id, updateAuthorDto);
+    return this.authorService.update(+id, updateAuthorDto);
   }
 
   @Put(':id')
@@ -44,11 +44,11 @@ export class AuthorController {
     @Param('id') id: string,
     @Body() updateAuthorDto: UpdateAuthorDto,
   ) {
-    return this.authorService.updateAuthor(+id, updateAuthorDto);
+    return this.authorService.update(+id, updateAuthorDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.authorService.removeAuthor(+id);
+    return this.authorService.remove(+id);
   }
 }

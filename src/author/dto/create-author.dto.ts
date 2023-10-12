@@ -9,22 +9,26 @@ import {
 } from 'class-validator';
 
 export class CreateAuthorDto {
-  @ApiProperty()
+  @ApiProperty({
+    type: String,
+    minLength: 2,
+    maxLength: 50,
+  })
   @IsString()
   @IsNotEmpty()
   @MinLength(2, { message: "Author's name must have atleast 2 character." })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
   @Type(() => Date)
   @IsDate()
   birthday: Date;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   @IsString()
   nationality: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   @IsString()
   @IsEnum(['m', 'f', 'u'])
   gender: string;

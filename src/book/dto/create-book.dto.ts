@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  maxLength,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateBookDto {
   @ApiProperty({
@@ -15,6 +9,13 @@ export class CreateBookDto {
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  @ApiProperty({
+    type: String,
+    maxLength: 500,
+  })
+  @IsString()
+  description: string;
 
   @ApiProperty({
     default: 0,
@@ -27,6 +28,18 @@ export class CreateBookDto {
   })
   @IsString()
   typeBook: string;
+
+  @ApiProperty({
+    type: Number,
+  })
+  @IsNumber()
+  publisherID: number;
+
+  @ApiProperty({
+    type: Number,
+  })
+  @IsNumber()
+  authorIDs: number[];
 }
 
 // export enum TypeBook {

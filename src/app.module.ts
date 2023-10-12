@@ -6,11 +6,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
 import { Book } from './book/entities/book.entity';
+import { PublisherModule } from './publisher/publisher.module';
+import { Publisher } from './publisher/entities/publisher.entity';
 
 @Module({
-  /*imports: [BookModule],
-  controllers: [AppController],
-  providers: [AppService],*/
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -18,14 +17,16 @@ import { Book } from './book/entities/book.entity';
       port: 5432,
       password: 'han',
       username: 'postgres',
-      entities: [Author, Book],
+      entities: [Author, Book, Publisher],
       database: 'postgres',
       schema: 'dbBookstore',
       logging: true,
       synchronize: true,
+      autoLoadEntities: true,
     }),
     BookModule,
     AuthorModule,
+    PublisherModule,
   ],
   controllers: [AppController],
   providers: [AppService],
